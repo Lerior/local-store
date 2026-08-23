@@ -5,16 +5,16 @@ namespace App\Services;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\ImageManager;
 use Intervention\Image\Format;
+use Intervention\Image\ImageManager;
 
-class ProductImageService {
-
+class ProductImageService
+{
     protected ImageManager $manager;
 
     public function __construct()
     {
-        $this->manager = new ImageManager( new Driver() );
+        $this->manager = new ImageManager(new Driver);
     }
 
     public function store(
@@ -22,17 +22,34 @@ class ProductImageService {
         int $productId,
         int $sortOrder
     ): string {
-        
+
         $image = $this->manager->decode($file);
 
-        $encoded = $image->encodeUsingFormat(Format::WEBP);
+        $formats = [
+            ['dimension' => 1920, 'name' => "large.webp"],
+            ['dimension' => 600, 'name' => "medium.webp"],
+            ['dimension' => 150, 'name' => "thumbnail.webp"]
+        ];
 
-        $path = "products/{$productId}/{$sortOrder}/large.webp";
+        foreach ($formats as $format) {
 
-        Storage::disk('public')->put($path, $encoded);
+            $resizedImage = clone $image;
+            
+            $resizedImage->scaleDown(
+                width: $format['dimension'],
+                height: $format['dimension']
+            );
+            
+            $encoded = $resizedImage->encodeUsingFormat(Format::WEBP);
 
-        return $path;
+            $path = "products/{$productId}/{$sortOrder}/{$format['name']}";
+
+            Storage::disk('public')->put($path, $encoded);
+
+        }
+
+        return "products/{$productId}/{$sortOrder}/";
+
 
     }
-
 }
