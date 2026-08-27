@@ -22,24 +22,23 @@ class ProductImageService
         int $productId,
         int $sortOrder
     ): string {
-
         $image = $this->manager->decode($file);
 
         $formats = [
-            ['dimension' => 1920, 'name' => "large.webp"],
-            ['dimension' => 600, 'name' => "medium.webp"],
-            ['dimension' => 150, 'name' => "thumbnail.webp"]
+            ['dimension' => 1920, 'name' => 'large.webp'],
+            ['dimension' => 600, 'name' => 'medium.webp'],
+            ['dimension' => 150, 'name' => 'thumbnail.webp'],
         ];
 
         foreach ($formats as $format) {
 
             $resizedImage = clone $image;
-            
+
             $resizedImage->scaleDown(
                 width: $format['dimension'],
                 height: $format['dimension']
             );
-            
+
             $encoded = $resizedImage->encodeUsingFormat(Format::WEBP);
 
             $path = "products/{$productId}/{$sortOrder}/{$format['name']}";
@@ -49,7 +48,14 @@ class ProductImageService
         }
 
         return "products/{$productId}/{$sortOrder}/";
+    }
 
+    public function delete(int $productId)
+    {
+
+        $path = "products/{$productId}";
+
+        Storage::disk('public')->deleteDirectory($path);
 
     }
 }
