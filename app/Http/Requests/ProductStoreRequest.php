@@ -27,12 +27,28 @@ class ProductStoreRequest extends FormRequest
             'price' => ['required', 'decimal:0,2', 'min:0'],
             'description' => ['nullable', 'string'],
             'stock' => ['required', 'integer', 'min:0'],
-            'images' => ['required', 'array', 'min:1', 'max:10'],
+            'images' => ['required', 'array', 'min:1', 'max:3'],
             'images.*' => [
                 'image',
                 'mimes:png,jpg,jpeg,webp',
                 'max:5120',
             ]
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            $images = $this->file('images', []);
+
+            foreach (array_keys($images) as $sortOrder) {
+                if (!in_array((int) $sortOrder, [1, 2, 3], true)) {
+                    $validator->errors()->add(
+                        'images',
+                        'Las posiciones de imagen permitidas son 1, 2 y 3.'
+                    );
+                }
+            }
+        });
     }
 }
