@@ -64,30 +64,6 @@ class ProductImageService
         int $productId,
         int $sortOrder,
     ): string {
-
-        $image = $this->manager->decode($file);
-
-        $formats = [
-            ['dimension' => 1920, 'name' => 'large.webp'],
-            ['dimension' => 600, 'name' => 'medium.webp'],
-            ['dimension' => 150, 'name' => 'thumbnail.webp'],
-        ];
-
-        foreach ($formats as $format) {
-
-            $resizedImage = clone $image;
-
-            $resizedImage->scaleDown(
-                width: $format['dimension'],
-                height: $format['dimension']
-            );
-
-            $encoded = $resizedImage->encodeUsingFormat(Format::WEBP);
-
-            $path = "products/{$productId}/{$sortOrder}/{$format['name']}";
-
-            Storage::disk('public')->put($path, $encoded);
-        }
-        return "products/{$productId}/{$sortOrder}/";
+        return $this->store($file, $productId, $sortOrder);
     }
 }
