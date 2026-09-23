@@ -76,7 +76,7 @@ class ProductController extends Controller
         $data = $request->validated();
 
         $perPage = $data['per_page'] ?? 10;
-        $orderBy = $data['order_by'] ?? 'date';
+        $orderBy = $data['order_by'] ?? 'created_at';
         $order = $data['order'] ?? 'desc';
 
         return

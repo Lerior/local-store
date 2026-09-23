@@ -24,10 +24,10 @@ class ProductUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:100'],
-            'price' => ['required', 'decimal:0,2', 'min:0'],
-            'description' => ['nullable', 'string'],
-            'stock' => ['required', 'integer', 'min:0'],
+            'name' => ['sometimes', 'string', 'max:100'],
+            'price' => ['sometimes', 'decimal:0,2', 'min:0'],
+            'description' => ['sometimes', 'string'],
+            'stock' => ['sometimes', 'integer', 'min:0'],
             'images' => ['sometimes','array', 'min:1', 'max:3'],
             'images.*' => [
                 'image',

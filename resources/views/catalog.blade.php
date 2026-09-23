@@ -21,7 +21,7 @@
         </div>
         <div class="container">
             <div class="product-card">
-                <img src="{{ asset('storage/products/number1/front/chamarraNegra.webp') }}" alt="Chamarra negra">
+                <img src="{{ asset('storage/products/14/1/medium.webp') }}" alt="Chamarra negra">
                 <p id="pTitle"  class="product-title" name="product">Chamarra Negra estilo urbano para hombre</p>
                 <p id="pPrice" class="product-price" name="price">$500.00</p>
             </div>
