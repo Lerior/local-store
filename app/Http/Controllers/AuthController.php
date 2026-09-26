@@ -27,6 +27,6 @@ class AuthController extends Controller
         $request->session()->invalidate(); 
         $request->session()->regenerateToken(); 
         
-        return redirect()->route('login.perform'); 
+        return redirect()->route('login'); 
         }
 }
