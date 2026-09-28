@@ -11,4 +11,8 @@ class Product extends Model
     protected $hidden = [ 'created_at','updated_at'];
 
     public function images () {return $this->hasMany(ProductImage::class);}
+
+    public function scopeSearch ($query, $search){
+        return $query->where('name','like', "%{$search}%"); 
+    }
 }
