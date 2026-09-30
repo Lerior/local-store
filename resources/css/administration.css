@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, sans-serif;
+}
+
+.navmenu {
+    display: flex;
+    background-color: black;
+    width: 100%;
+    padding: 5px;
+}
+
+.div-menu {
+    display: flex;
+    height: 100%;
+    align-self: center;
+}
+
+.form-btn {
+    display: flex;
+    margin-left: auto;
+    height: 100%;
+}
+
+.add-btn,
+.edit-btn,
+.logout-btn {
+    border-radius: 3px;
+    background-color: gray;
+    color: whitesmoke;
+    border: none;
+    padding: 7px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.admin-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.add-form input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.add-form input[type="file"] {
+    background-color: gray;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.add-form input[type="file"]:hover {
+    background-color: rgb(106, 106, 106);
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-submit:hover {
+    background-color: #222;
+}
+
+.add-btn:hover,
+.edit-btn:hover,
+.logout-btn:hover {
+    background-color: rgb(101, 100, 100);
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.error-text {
+    color: #dc2626;
+    font-size: 12px;
+}
+
+/*Edit-Form*/
+
+.edit-form {
+    display: flex, none;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 32px;
+    gap: 16px;
+}
+
+.edit-form input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.edit-form input[type="file"] {
+    background-color: gray;
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.edit-form input[type="file"]:hover {
+    background-color: rgb(106, 106, 106);
+    cursor: pointer;
+    color: whitesmoke;
+}
+
+.btn-save {
+    width: 100%;
+    padding: 12px;
+    background-color: #1d7645;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.btn-delete {
+    width: 100%;
+    padding: 12px;
+    background-color: #b22134;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.search-section {
+    display: flex;
+    gap: 10px;
+}
+
+.search-section input {
+    width: auto;
+}
+
+.btn-search {
+    width: 100%;
+    padding: 12px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/*Search List Section*/
+
+
+.search-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.autocomplete-container {
+    position: relative; /* Punto de referencia para position: absolute */
+    flex: 1; /* O el ancho que requieras */
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Lista desplegable flotante */
+.results-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+    /* Oculta por defecto */
+}
+
+/* Elementos individuales de la lista */
+.results-list li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.results-list li:last-child {
+    border-bottom: none;
+}
+
+.results-list li:hover {
+    background-color: #f0f0f0;
+}

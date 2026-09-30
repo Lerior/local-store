@@ -17,35 +17,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Accept': 'application/json'
             }
         })
-        .then(res => res.json())
-        .then(paginatedData => {
-            container.innerHTML = '';
+            .then(res => res.json())
+            .then(paginatedData => {
+                container.innerHTML = '';
 
-            // Laravel paginate devuelve los registros dentro de .data
-            const products = paginatedData.data;
+                // Laravel paginate devuelve los registros dentro de .data
+                const products = paginatedData.data;
 
-            if (!products || products.length === 0) {
-                container.innerHTML = '<p>No se encontraron productos.</p>';
-                return;
-            }
+                if (!products || products.length === 0) {
+                    container.innerHTML = '<p>No se encontraron productos.</p>';
+                    return;
+                }
 
-            products.forEach(product => {
-                // Ajusta la propiedad de la imagen según la estructura de tu modelo de imágenes
-                const imagePath = (product.images && product.images.length > 0)
-                    ? `/storage/${product.images[0].path}/medium.webp` 
-                    : '/images/default-product.webp';
+                products.forEach(product => {
+                    // Ajusta la propiedad de la imagen según la estructura de tu modelo de imágenes
+                    const imagePath = (product.images && product.images.length > 0)
+                        ? `/storage/${product.images[0].path}/medium.webp`
+                        : '/images/default-product.webp';
 
-                const cardHTML = `
+                    const cardHTML = `
                     <div class="product-card">
                         <img src="${imagePath}" alt="${product.name}">
                         <p class="product-title">${product.name}</p>
                         <p class="product-price">$${parseFloat(product.price).toFixed(2)}</p>
                     </div>
                 `;
-                container.insertAdjacentHTML('beforeend', cardHTML);
-            });
-        })
-        .catch(err => console.error('Error cargando productos:', err));
+                    container.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            })
+            .catch(err => console.error('Error cargando productos:', err));
     }
 
     // Cargar productos al iniciar la página

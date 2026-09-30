@@ -8,7 +8,10 @@ export default defineConfig({
         laravel({
             input: ['resources/css/app.css',
                     'resources/css/navbar.css', 
-                    'resources/js/app.js'],
+                    'resources/js/app.js',
+                    'resources/js/catalog.js',
+                    'resources/js/administration.js'
+                ],
             refresh: true,
             fonts: [
                 bunny('Instrument Sans', {
