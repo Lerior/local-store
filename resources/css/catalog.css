@@ -13,24 +13,24 @@ html, body {
 #header {
     width: 100%;
     background-color: black;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15); /* Opcional: sombra tenue inferior */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 #nav-bar {
     width: 100%;
-    padding: 16px 20px; /* Relleno superior/inferior para dar altura de banner */
+    padding: 16px 20px;
     display: flex;
-    justify-content: center; /* Centra el título horizontalmente */
+    justify-content: center;
     align-items: center;
 }
 
 .titulo {
     color: white;
-    margin: 0; /* Elimina los márgenes por defecto del h1 */
+    margin: 0; 
     font-size: 1.4rem;
     font-weight: 700;
-    letter-spacing: 0.5px; /* Mejora la legibilidad */
-    text-transform: uppercase; /* Opcional: da estilo de banner moderno */
+    letter-spacing: 0.5px; 
+    text-transform: uppercase; 
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
 }
@@ -64,10 +64,9 @@ p {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 1. Contenedor de productos: 2 columnas en móvil por defecto */
 .container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas pequeñas */
+    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 12px;
     width: 100%;
@@ -76,12 +75,11 @@ p {
     box-sizing: border-box;
 }
 
-/* 2. Estilos para las Cards (Minimalista con sombra y transición) */
 .product-card {
     background-color: #ffffff;
     border-radius: 10px;
-    overflow: hidden; /* Mantiene la imagen dentro del borde redondeado */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); /* Sombra tenue y minimalista */
+    overflow: hidden; 
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     display: flex;
     flex-direction: column;
@@ -89,33 +87,29 @@ p {
     cursor: pointer;
 }
 
-/* Efecto hover/touch para que sobresalga ligeramente */
+
 .product-card:hover {
-    transform: translateY(-4px); /* Se eleva 4px hacia arriba */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); /* La sombra se intensifica */
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); 
 }
 
-/* 3. Ajuste de Imágenes (Evita deformaciones) */
+
 .product-card img {
     width: 100%;
-    /* 1. Usamos una relación de aspecto fija (1:1 es cuadrada, 4:3 es ligeramente rectangular) */
     aspect-ratio: 4 / 3; 
-    /* 2. Eliminamos height fijo para que respete aspect-ratio */
     height: auto; 
-    /* 3. Ajusta la foto al marco sin deformar: recorta suavemente lo sobrante */
     object-fit: cover; 
     object-position: center; 
-    background-color: #f3f4f6; /* Fondo neutral si tarda en cargar */
+    background-color: #f3f4f6;
     display: block;
 }
 
-/* 4. Textos de la tarjeta */
+
 .product-title {
     font-size: 0.9rem;
     font-weight: 500;
     color: #333333;
     margin: 8px 10px 4px 10px;
-    /* Limita el texto a 2 líneas para mantener alineadas las tarjetas */
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden;

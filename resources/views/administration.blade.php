@@ -61,15 +61,15 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style">
                 <label for="image_1">Imagen frontal:</label>
-                <input type="file" id="image_1" name="images[1]" accept="image/png,image/jpeg,image/webp" required>
+                <input type="file" id="image_1" name="images[1]" accept="image/png,image/jpeg,image/webp"  required>
                 @error('images.1')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style">
                 <label for="image_2">Imagen lateral:</label>
                 <input type="file" id="image_2" name="images[2]" accept="image/png,image/jpeg,image/webp">
                 @error('images.2')
@@ -77,7 +77,7 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style">
                 <label for="image_3">Imagen trasera:</label>
                 <input type="file" id="image_3" name="images[3]" accept="image/png,image/jpeg,image/webp">
                 @error('images.3')
@@ -100,12 +100,19 @@
             <label for="search-edit">Buscar Producto: </label>
             <div class="search-section">
                 <div class="input-wrapper autocomplete-container">
-                    <input type="text" name="search-edit" id="search-edit" class="search-input" autocomplete="off">
+                    <input type="search" name="search-edit" id="search-edit" class="search-input" placeholder="Ingresa nombre del producto..." autocomplete="off">
                     <ul id="resultsList" class="results-list"></ul>
                 </div>
-                <button type="button" class="btn btn-search">Buscar</button>
             </div>
             @csrf
+            <div class="form-group">
+                <label for="name-edit">ID del Producto:</label>
+                <input type="text" name="IdEdit" id="id-edit" disabled autofocus>
+                @error('id-edit')
+                    <span class="error-text">{{ $message }}</span>
+                @enderror
+            </div>
+
             <div class="form-group">
                 <label for="name-edit">Nombre del Producto:</label>
                 <input type="text" name="name-edit" id="name-edit" value="{{ old('name-edit') }}" autofocus>
@@ -138,25 +145,28 @@
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style-edit">
                 <label for="image_1">Imagen frontal:</label>
-                <input type="file" id="image_1" name="images[1]" accept="image/png,image/jpeg,image/webp">
+                <label class="labelImage" id="container-image1"></label>
+                <input type="file" id="edit-image_1" name="images[1]" accept="image/png,image/jpeg,image/webp">
                 @error('images.1')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style-edit">
                 <label for="image_2">Imagen lateral:</label>
-                <input type="file" id="image_2" name="images[2]" accept="image/png,image/jpeg,image/webp">
+                <label class="labelImage" id="container-image2"></label>
+                <input type="file" id="edit-image_2" name="images[2]" accept="image/png,image/jpeg,image/webp">
                 @error('images.2')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
 
-            <div class="form-group">
+            <div class="form-group file-style-edit">
                 <label for="image_3">Imagen trasera:</label>
-                <input type="file" id="image_3" name="images[3]" accept="image/png,image/jpeg,image/webp">
+                <label class="labelImage" id="container-image3"></label>
+                <input type="file" id="edit-image_3" name="images[3]" accept="image/png,image/jpeg,image/webp">
                 @error('images.3')
                     <span class="error-file">{{ $message }}</span>
                 @enderror

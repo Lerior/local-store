@@ -17,6 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* SearchInput-Lists */
     const searchInput = document.getElementById('search-edit');
+    const idInput = document.getElementById('id-edit');
+    const nameInput = document.getElementById('name-edit');
+    const priceInput = document.getElementById('price-edit');
+    const descriptionInput = document.getElementById('description-edit');
+    const stockInput = document.getElementById('stock-edit');
+    const imageEdit1 = document.getElementById('container-image1');
+    const imageEdit2 = document.getElementById('container-image2');
+    const imageEdit3 = document.getElementById('container-image3');
     const resultsList = document.getElementById('resultsList');
 
     let debouncerTime;
@@ -26,14 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         clearTimeout(debouncerTime);
 
-        if (query.length < 3) {
+        if (query.length < 2) {
             hideResults();
             return;
         }
 
         debouncerTime = setTimeout(() => {
             fetchResults(query);
-        }, 150);
+        }, 50);
     });
 
     async function fetchResults(query) {
@@ -65,8 +73,19 @@ document.addEventListener('DOMContentLoaded', () => {
             const li = document.createElement('li');
             li.textContent = item.name;
             li.addEventListener('click', () => {
-                searchInput.value = item.name;
                 hideResults();
+                idInput.value = item.id;
+                nameInput.value = item.name;
+                priceInput.value = item.price;
+                descriptionInput.value = item.description;
+                stockInput.value = item.stock;
+                cleanImg();
+                for (let index = 0; index < item.images.length; index++) {
+                    const img = document.createElement('img');
+                    img.id = `imageE${index+1}`;
+                    img.src = `/storage/${item.images[index].path}medium.webp`;
+                    document.getElementById(`container-image${index+1}`).appendChild(img);
+                }
             });
 
             resultsList.appendChild(li);
@@ -86,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function fillEditProductInputs(){
-
+    function cleanImg(){
+        imageEdit1.innerHTML='';
+        imageEdit2.innerHTML='';
+        imageEdit3.innerHTML='';
     }
 });

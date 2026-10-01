@@ -10,7 +10,6 @@ body {
     font-family: system-ui, -apple-system, sans-serif;
 }
 
-/* Nav superior */
 .background_auth {
     background-color: black;
     color: white;
@@ -24,21 +23,19 @@ body {
     padding-left: 20px;
 }
 
-/* Contenedor principal centrado */
 .auth-container {
-    flex: 0.7; /* Ocupa el espacio restante debajo del nav */
+    flex: 0.7;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 
-/* Formulario tipo card en una sola columna */
 .auth-form {
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 400px; /* Ancho cómodo para móvil y desktop */
+    max-width: 400px; 
     padding: 32px;
     gap: 16px;
     border: 1px solid #e5e7eb;
@@ -47,7 +44,6 @@ body {
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* Campos de entrada */
 .form-group {
     display: flex;
     flex-direction: column;
@@ -64,13 +60,11 @@ body {
     font-size: 14px;
 }
 
-/* Checkbox */
 .checkbox-group {
     flex-direction: row;
     align-items: center;
 }
 
-/* Botón de envío */
 .btn-submit {
     width: 100%;
     padding: 12px;

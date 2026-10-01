@@ -178,13 +178,8 @@ textarea {
     gap: 10px;
 }
 
-.search-section input {
-    width: auto;
-}
-
 .btn-search {
-    width: 100%;
-    padding: 12px;
+    height: 38px;
     background-color: #000;
     color: #fff;
     border: none;
@@ -207,8 +202,8 @@ textarea {
 }
 
 .autocomplete-container {
-    position: relative; /* Punto de referencia para position: absolute */
-    flex: 1; /* O el ancho que requieras */
+    position: relative; 
+    flex: 1; 
 }
 
 .search-input {
@@ -238,7 +233,6 @@ textarea {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     display: none;
-    /* Oculta por defecto */
 }
 
 /* Elementos individuales de la lista */
@@ -255,3 +249,18 @@ textarea {
 .results-list li:hover {
     background-color: #f0f0f0;
 }
+
+#id-edit{
+    width: 30%;
+}
+
+.labelImage img, .file-style-edit{
+    width: 100%;
+    max-width: 100%;
+}
+
+.file-style-edit{
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
