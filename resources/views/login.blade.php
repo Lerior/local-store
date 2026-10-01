@@ -35,12 +35,6 @@
             @enderror
         </div>
 
-        <div class="form-group checkbox-group">
-            <label>
-                <input type="checkbox" name="remember"> Recordarme
-            </label>
-        </div>
-
         <button type="submit" class="btn-submit">Iniciar Sesión</button>
     </form>
 </main>
