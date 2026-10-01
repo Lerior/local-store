@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageEdit2 = document.getElementById('container-image2');
     const imageEdit3 = document.getElementById('container-image3');
     const resultsList = document.getElementById('resultsList');
+    const editForm =  document.getElementById('formEdit');
 
     let debouncerTime;
 
@@ -74,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             li.textContent = item.name;
             li.addEventListener('click', () => {
                 hideResults();
+                editForm.action = `/products/${item.id}`;
                 idInput.value = item.id;
                 nameInput.value = item.name;
                 priceInput.value = item.price;

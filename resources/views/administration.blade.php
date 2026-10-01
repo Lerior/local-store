@@ -63,7 +63,7 @@
 
             <div class="form-group file-style">
                 <label for="image_1">Imagen frontal:</label>
-                <input type="file" id="image_1" name="images[1]" accept="image/png,image/jpeg,image/webp"  required>
+                <input type="file" id="image_1" name="images[1]" accept="image/png,image/jpeg,image/webp" required>
                 @error('images.1')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
@@ -96,18 +96,21 @@
     <!-- Second menu (EDIT)  -->
     <div class="edit-container hidden" id="edit-container">
         <label for="edit-container">Editar/Eliminar Producto</label>
-        <form class="edit-form">
+        <form method="POST" id="formEdit" action="/products" enctype="multipart/form-data" class="edit-form">
+            @csrf
+            @method('PATCH')
             <label for="search-edit">Buscar Producto: </label>
             <div class="search-section">
                 <div class="input-wrapper autocomplete-container">
-                    <input type="search" name="search-edit" id="search-edit" class="search-input" placeholder="Ingresa nombre del producto..." autocomplete="off">
+                    <input type="search" name="search-edit" id="search-edit" class="search-input"
+                        placeholder="Ingresa nombre del producto..." autocomplete="off">
                     <ul id="resultsList" class="results-list"></ul>
                 </div>
             </div>
             @csrf
             <div class="form-group">
                 <label for="name-edit">ID del Producto:</label>
-                <input type="text" name="IdEdit" id="id-edit" disabled autofocus>
+                <input type="text" name="id" id="id-edit" disabled autofocus>
                 @error('id-edit')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
@@ -115,7 +118,7 @@
 
             <div class="form-group">
                 <label for="name-edit">Nombre del Producto:</label>
-                <input type="text" name="name-edit" id="name-edit" value="{{ old('name-edit') }}" autofocus>
+                <input type="text" name="name" id="name-edit" value="{{ old('name-edit') }}" autofocus>
                 @error('name-edit')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
@@ -123,7 +126,7 @@
 
             <div class="form-group">
                 <label for="price-edit">Precio:</label>
-                <input type="number" min="0" step="0.01" inputmode="numeric" name="price-edit" id="price-edit">
+                <input type="number" min="0" step="0.01" inputmode="numeric" name="price" id="price-edit">
                 @error('price-edit')
                     <span class="error-number">{{ $message }}</span>
                 @enderror
@@ -131,7 +134,7 @@
 
             <div class="form-group">
                 <label for="description-edit">Descripcion:</label>
-                <textarea name="description-edit" id="description-edit" cols="30" rows="2"></textarea>
+                <textarea name="description" id="description-edit" cols="30" rows="2"></textarea>
                 @error('description-edit')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
@@ -139,7 +142,7 @@
 
             <div class="form-group">
                 <label for="stock-edit">En existencia:</label>
-                <input type="number" name="stock-edit" id="stock-edit" min="0" step="1">
+                <input type="number" name="stock" id="stock-edit" min="0" step="1">
                 @error('stock-edit')
                     <span class="error-number">{{ $message }}</span>
                 @enderror
