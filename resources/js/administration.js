@@ -112,4 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
         imageEdit2.innerHTML='';
         imageEdit3.innerHTML='';
     }
+
+    function cleanForm(){
+        editForm.reset();
+        cleanImg();
+    }
 });

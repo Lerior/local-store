@@ -99,7 +99,7 @@
         <form method="POST" id="formEdit" action="/products" enctype="multipart/form-data" class="edit-form">
             @csrf
             @method('PATCH')
-            <label for="search-edit">Buscar Producto: </label>
+            <label class="search-label" for="search-edit">Buscar Producto: </label>
             <div class="search-section">
                 <div class="input-wrapper autocomplete-container">
                     <input type="search" name="search-edit" id="search-edit" class="search-input"
@@ -179,7 +179,7 @@
                 <span class="error-file">{{ $message }}</span>
             @enderror
 
-            <button type="submit" class="btn btn-save">Guardar Cambios</button>
+            <button type="submit" onclick="cleanForm()" class="btn btn-save">Guardar Cambios</button>
             <button type="button" class="btn btn-delete">Eliminar</button>
         </form>
     </div>

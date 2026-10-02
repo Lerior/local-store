@@ -120,7 +120,7 @@ textarea {
 /*Edit-Form*/
 
 .edit-form {
-    display: flex, none;
+    display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 400px;
@@ -259,8 +259,7 @@ textarea {
     max-width: 100%;
 }
 
-.file-style-edit{
-    margin-bottom: 15px;
-    margin-top: 15px;
+.search-label{
+    margin: auto;
 }
 
