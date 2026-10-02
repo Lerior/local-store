@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(paginatedData => {
                 container.innerHTML = '';
 
-                // Laravel paginate devuelve los registros dentro de .data
                 const products = paginatedData.data;
 
                 if (!products || products.length === 0) {
@@ -30,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 products.forEach(product => {
-                    // Ajusta la propiedad de la imagen según la estructura de tu modelo de imágenes
+                    const shortText = product.name.length > 35 ? product.name.substring(0, 35) + "..." : product.name;
+
                     const imagePath = (product.images && product.images.length > 0)
                         ? `/storage/${product.images[0].path}/medium.webp`
                         : '/images/default-product.webp';
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cardHTML = `
                     <div class="product-card">
                         <img src="${imagePath}" alt="${product.name}">
-                        <p class="product-title">${product.name}</p>
+                        <p class="product-title">${shortText}</p>
                         <p class="product-price">$${parseFloat(product.price).toFixed(2)}</p>
                     </div>
                 `;

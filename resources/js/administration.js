@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const imageEdit2 = document.getElementById('container-image2');
     const imageEdit3 = document.getElementById('container-image3');
     const resultsList = document.getElementById('resultsList');
-    const editForm =  document.getElementById('formEdit');
+    const editForm = document.getElementById('formEdit');
 
     let debouncerTime;
-
+    //Listener for search-bar
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.trim();
 
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchResults(query);
         }, 50);
     });
-
+    //Call to the BD and fetch data
     async function fetchResults(query) {
         try {
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
+    //Render the data obtained via fetch
     function renderResults(result) {
         resultsList.innerHTML = '';
 
@@ -72,7 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         items.forEach(item => {
             const li = document.createElement('li');
-            li.textContent = item.name;
+            const minImage = document.createElement('img');
+            const shortText = item.name.length > 15 ? item.name.substring(0, 15) + "..." : item.name;
+            li.textContent = shortText;
+            minImage.src = `/storage/${item.images[0].path}thumbnail.webp`;
             li.addEventListener('click', () => {
                 hideResults();
                 editForm.action = `/products/${item.id}`;
@@ -81,21 +84,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 priceInput.value = item.price;
                 descriptionInput.value = item.description;
                 stockInput.value = item.stock;
-                cleanImg();
+                cleanUpImg();
                 for (let index = 0; index < item.images.length; index++) {
                     const img = document.createElement('img');
-                    img.id = `imageE${index+1}`;
+                    img.id = `imageE${index + 1}`;
                     img.src = `/storage/${item.images[index].path}medium.webp`;
-                    document.getElementById(`container-image${index+1}`).appendChild(img);
+                    document.getElementById(`container-image${index + 1}`).appendChild(img);
                 }
             });
 
             resultsList.appendChild(li);
+            li.appendChild(minImage);
         });
 
         resultsList.style.display = 'block';
     }
-
+    //Hide lists of search results to edit
     function hideResults() {
         resultsList.innerHTML = '';
         resultsList.style.display = 'none';
@@ -107,14 +111,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    function cleanImg(){
-        imageEdit1.innerHTML='';
-        imageEdit2.innerHTML='';
-        imageEdit3.innerHTML='';
+    //Cleanup images of the lists
+    function cleanUpImg() {
+        imageEdit1.innerHTML = '';
+        imageEdit2.innerHTML = '';
+        imageEdit3.innerHTML = '';
     }
 
-    function cleanForm(){
+    function cleanUpForm() {
         editForm.reset();
-        cleanImg();
+        cleanUpImg();
     }
 });

@@ -179,7 +179,7 @@
                 <span class="error-file">{{ $message }}</span>
             @enderror
 
-            <button type="submit" onclick="cleanForm()" class="btn btn-save">Guardar Cambios</button>
+            <button type="submit" onclick="cleanUpForm()" class="btn btn-save">Guardar Cambios</button>
             <button type="button" class="btn btn-delete">Eliminar</button>
         </form>
     </div>
