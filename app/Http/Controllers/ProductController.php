@@ -52,10 +52,8 @@ class ProductController extends Controller
 
             $product->load('images');
 
-            return response()->json([
-                'message' => 'Product created successfully',
-                'product' => $product,
-            ], 201);
+            return redirect()->route('admin.dashboard');
+            
         } catch (\Throwable $e) {
 
             report($e);

@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchResults(query) {
         try {
 
-            const response = await fetch(`http://localhost:8000/products?search=${query}`);
+            const response = await fetch(`/products?search=${query}`);
             const result = await response.json();
             renderResults(result);
 
@@ -118,8 +118,46 @@ document.addEventListener('DOMContentLoaded', () => {
         imageEdit3.innerHTML = '';
     }
 
+
     function cleanUpForm() {
         editForm.reset();
         cleanUpImg();
     }
+
+    //Delete
+    const token = document.querySelector('meta[name="csrf-token"]').content;
+
+    async function deleteProduct() {
+        const id = idInput.value;
+        console.log(id);
+        try {
+            const response = await fetch(`/products/${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': token,
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                console.error('Error al eliminar', response.status);
+                return;
+            }
+
+            const result = await response.json();
+
+            console.log('Producto eliminado');
+            console.log(result);
+            cleanUpForm();
+        } catch (error) {
+            console.error('Error en la peticion:', error);
+        }
+
+    }
+    const btnDelete = document.getElementById('delete-btn');
+
+    btnDelete.addEventListener('click', () => {
+        deleteProduct();
+    });
+
 });

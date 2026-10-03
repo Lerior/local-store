@@ -1,6 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Administracion</title>
 </head>
 @vite(['resources/css/administration.css', 'resources/js/administration.js'])
@@ -179,8 +180,13 @@
                 <span class="error-file">{{ $message }}</span>
             @enderror
 
-            <button type="submit" onclick="cleanUpForm()" class="btn btn-save">Guardar Cambios</button>
-            <button type="button" class="btn btn-delete">Eliminar</button>
+            <button type="submit" id="save-btn" class="btn btn-save">
+                Guardar Cambios
+            </button>
+
+            <button type="button" id="delete-btn" class="btn btn-delete">
+                Eliminar
+            </button>
         </form>
     </div>
 </main>
