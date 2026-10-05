@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         debouncerTime = setTimeout(() => {
             fetchResults(query);
-        }, 50);
+        }, 300);
     });
     //Call to the BD and fetch data
     async function fetchResults(query) {
