@@ -108,7 +108,6 @@
                     <ul id="resultsList" class="results-list"></ul>
                 </div>
             </div>
-            @csrf
             <div class="form-group">
                 <label for="name-edit">ID del Producto:</label>
                 <input type="text" name="id" id="id-edit" disabled autofocus>
