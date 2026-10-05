@@ -111,7 +111,7 @@
             <div class="form-group">
                 <label for="name-edit">ID del Producto:</label>
                 <input type="text" name="id" id="id-edit" disabled autofocus>
-                @error('id-edit')
+                @error('id')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
             </div>
@@ -119,7 +119,7 @@
             <div class="form-group">
                 <label for="name-edit">Nombre del Producto:</label>
                 <input type="text" name="name" id="name-edit" value="{{ old('name-edit') }}" autofocus>
-                @error('name-edit')
+                @error('name')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
             </div>
@@ -127,7 +127,7 @@
             <div class="form-group">
                 <label for="price-edit">Precio:</label>
                 <input type="number" min="0" step="0.01" inputmode="numeric" name="price" id="price-edit">
-                @error('price-edit')
+                @error('price')
                     <span class="error-number">{{ $message }}</span>
                 @enderror
             </div>
@@ -135,7 +135,7 @@
             <div class="form-group">
                 <label for="description-edit">Descripcion:</label>
                 <textarea name="description" id="description-edit" cols="30" rows="2"></textarea>
-                @error('description-edit')
+                @error('description')
                     <span class="error-text">{{ $message }}</span>
                 @enderror
             </div>
@@ -143,7 +143,7 @@
             <div class="form-group">
                 <label for="stock-edit">En existencia:</label>
                 <input type="number" name="stock" id="stock-edit" min="0" step="1">
-                @error('stock-edit')
+                @error('stock')
                     <span class="error-number">{{ $message }}</span>
                 @enderror
             </div>
@@ -152,7 +152,7 @@
                 <label for="image_1">Imagen frontal:</label>
                 <label class="labelImage" id="container-image1"></label>
                 <input type="file" id="edit-image_1" name="images[1]" accept="image/png,image/jpeg,image/webp">
-                @error('images.1')
+                @error('images[1]')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
@@ -161,7 +161,7 @@
                 <label for="image_2">Imagen lateral:</label>
                 <label class="labelImage" id="container-image2"></label>
                 <input type="file" id="edit-image_2" name="images[2]" accept="image/png,image/jpeg,image/webp">
-                @error('images.2')
+                @error('images[2]')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
@@ -170,7 +170,7 @@
                 <label for="image_3">Imagen trasera:</label>
                 <label class="labelImage" id="container-image3"></label>
                 <input type="file" id="edit-image_3" name="images[3]" accept="image/png,image/jpeg,image/webp">
-                @error('images.3')
+                @error('images[3]')
                     <span class="error-file">{{ $message }}</span>
                 @enderror
             </div>
