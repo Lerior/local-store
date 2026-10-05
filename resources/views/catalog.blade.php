@@ -17,7 +17,7 @@
     <main class="main_section">
         <div class="search-section">
             <input type="search" class="search-bar" name="search" id="searchBar">
-            <button type="button" class="search-btn">
+            <button type="button" id="searchBtn" class="search-btn">
                 <span class="material-icons">search</span>
             </button>
         </div>
