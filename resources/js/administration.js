@@ -48,7 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchResults(query) {
         try {
 
-            const response = await fetch(`/products?search=${query}`);
+            const url = new URL('/products', window.location.origin);
+            url.searchParams.append('search', query);
+
+            const response = await fetch(url);
             const result = await response.json();
             renderResults(result);
 
