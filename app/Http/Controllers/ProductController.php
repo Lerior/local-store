@@ -60,9 +60,7 @@ class ProductController extends Controller
                 $this->imageService->deletePath($productId);
             }
 
-            return response()->json([
-                'message' => 'Error al crear producto',
-            ], 500);
+            return back()->with('error', 'Product not created');
         }
     }
 
@@ -143,9 +141,7 @@ class ProductController extends Controller
 
             report($e);
 
-            return response()->json([
-                'message' => 'Error at product update',
-            ], 500);
+            return back()->with('error', 'Could not update product');
         }
     }
 
