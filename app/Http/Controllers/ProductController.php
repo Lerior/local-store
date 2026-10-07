@@ -50,8 +50,6 @@ class ProductController extends Controller
 
             });
 
-            $product->load('images');
-
             return redirect()->route('admin.dashboard');
             
         } catch (\Throwable $e) {
@@ -138,8 +136,6 @@ class ProductController extends Controller
                     }
                 }
             });
-
-            $product->load('images');
 
             return redirect()->route('admin.dashboard');
 
