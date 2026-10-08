@@ -7,10 +7,15 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/css/app.css',
-                    'resources/css/navbar.css', 
+                    'resources/css/login.css',
+                    'resources/css/catalog.css',
+                    'resources/css/administration.css', 
+                    'resources/css/productDetails.css', 
                     'resources/js/app.js',
+                    'resources/js/login.js',
                     'resources/js/catalog.js',
-                    'resources/js/administration.js'
+                    'resources/js/administration.js',
+                    'resources/js/productDetails.js'
                 ],
             refresh: true,
             fonts: [

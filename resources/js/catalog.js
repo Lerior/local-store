@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('productsContainer');
     const bannerHome = document.getElementById('nav-bar');
 
+    //Load products lists
     function loadProducts(searchTerm = '') {
         const url = new URL('/products', window.location.origin);
         if (searchTerm) {
@@ -30,34 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 products.forEach(product => {
                     const shortText = product.name.length > 35 ? product.name.substring(0, 35) + "..." : product.name;
-
                     const imagePath = (product.images && product.images.length > 0)
                         ? `/storage/${product.images[0].path}/medium.webp`
                         : '/images/default-product.webp';
 
                     const cardHTML = `
-                    <div class="product-card">
+                    <div class="product-card" id="cardProduct${product.id}">
                         <img src="${imagePath}" alt="${product.name}">
                         <p class="product-title">${shortText}</p>
                         <p class="product-price">$${parseFloat(product.price).toFixed(2)}</p>
                     </div>
                 `;
                     container.insertAdjacentHTML('beforeend', cardHTML);
+
+                    //Redirection event
+                    const cardProduct = document.getElementById(`cardProduct${product.id}`);
+                    cardProduct.addEventListener('click', () => {
+                        window.location.href = `/product/${product.id}`;
+                    });
                 });
             })
             .catch(err => console.error('Error cargando productos:', err));
     }
 
-    // Cargar productos al iniciar la página
+    // Load products when open the page
     loadProducts();
 
-    // Evento de búsqueda
+    // Search event
     if (searchBtn) {
         searchBtn.addEventListener('click', () => {
             loadProducts(searchBar.value);
         });
     }
 
+    //Enter -> search event
     if (searchBar) {
         searchBar.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -65,10 +72,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
+    //Load products when clic banner
     if (bannerHome) {
         bannerHome.addEventListener('click', () => {
             loadProducts();
         });
     }
+
+
+
 });

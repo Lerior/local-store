@@ -29,3 +29,7 @@ Route::get('/login', function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+Route::get('/product/{id}', function ($id) {
+    return view('productDetails');
+});
