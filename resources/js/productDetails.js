@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const title = document.getElementById('title');
     const imagesContainer = document.getElementById('imagesContainer');
     const largeImage = document.getElementById('largeImage');
+    const largeImageBlur = document.getElementById('largeImageBlur');
     const imagesThumbnails = document.getElementById('imagesThumbnails');
     const price = document.getElementById('price');
     const stock = document.getElementById('stock');
@@ -35,16 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderResult(product){
 
         title.textContent = product.name;
-        price.textContent = product.price;
+        price.textContent = '$'+product.price;
         stock.textContent = product.stock;
         description.textContent = product.description;
-        largeImage.src = `/storage/${product.images[0].path}medium.webp`
-
+        largeImage.src = `/storage/${product.images[0].path}large.webp`
+        largeImageBlur.src = `/storage/${product.images[0].path}large.webp`
         for (let index = 0; index < product.images.length; index++) {
             const images = document.createElement('img');
+            const card = document.createElement('div');
+            card.classList.add('card');
+            card.id = `cardImage${index+1}`;
             images.id = `imagesT${index+1}`;
             images.src = `/storage/${product.images[index].path}thumbnail.webp`;
-            document.getElementById(`imagesT${index+1}`).appendChild(images);
+
+            imagesThumbnails.appendChild(card);
+            document.getElementById(`cardImage${index+1}`).appendChild(images);
         }
 
     }
