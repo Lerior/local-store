@@ -17,7 +17,13 @@ class Product extends Model
     }
 
     public function scopeSearch($query, $search)
-    {
-        return $query->where('name', 'like', "%{$search}%");
+    {   
+        $words = preg_split('/\s+/', trim($search));
+       
+        return $query->where( function ($query) use ($words) {
+            foreach ($words as $word) {
+                $query->where('name', 'like', "%{$word}%");
+            }
+        });
     }
 }

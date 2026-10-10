@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadProducts(searchTerm = '') {
         const url = new URL('/products', window.location.origin);
         if (searchTerm) {
-            url.searchParams.append('search', searchTerm);
+                url.searchParams.append('search', searchTerm);
         }
 
         fetch(url, {
@@ -60,7 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Search event
     if (searchBtn) {
         searchBtn.addEventListener('click', () => {
-            loadProducts(searchBar.value);
+            const cleanValue = searchBar.value.trim();
+            if (!(cleanValue === "")) {
+                loadProducts(searchBar.value);
+            }
         });
     }
 
@@ -68,7 +71,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchBar) {
         searchBar.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
+                const cleanValue = searchBar.value.trim();
+            if (!(cleanValue === "")) {
                 loadProducts(searchBar.value);
+            }
             }
         });
     }
