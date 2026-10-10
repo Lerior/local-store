@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stock = document.getElementById('stock');
     const description = document.getElementById('description');
 
+    //produc request by id
     async function fetchProduct(id) {
         const shortUrl = `/products/${id}`
         try {
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    //reder product detailed
     function renderResult(product){
 
         title.textContent = product.name;
@@ -51,10 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
             imagesThumbnails.appendChild(card);
             document.getElementById(`cardImage${index+1}`).appendChild(images);
+       
+            // change large image
+            const cardImageId = document.getElementById(card.id);
+            cardImageId.addEventListener('click', () => {
+                largeImage.src = `/storage/${product.images[index].path}large.webp`
+            });
         }
 
     }
 
+    //load products details
     fetchProduct(id);
 
+    
 });
