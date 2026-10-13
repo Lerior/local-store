@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardImageId = document.getElementById(card.id);
             cardImageId.addEventListener('click', () => {
                 largeImage.src = `/storage/${product.images[index].path}large.webp`
+                largeImageBlur.src = `/storage/${product.images[index].path}large.webp`
             });
         }
 
