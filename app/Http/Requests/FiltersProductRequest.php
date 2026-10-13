@@ -24,7 +24,7 @@ class FiltersProductRequest extends FormRequest
     {
         return [
             'per_page' => 'integer|min:5|max:50',
-            'order_by' => 'created_at',
+            'order_by' => 'in:created_at,price,name',
             'order' => 'in:asc,desc',
             'search' => 'string|min:2'
         ];
