@@ -1,5 +1,4 @@
 // resources/js/catalog.js
-
 document.addEventListener('DOMContentLoaded', () => {
     const searchBar = document.getElementById('searchBar');
     const searchBtn = document.getElementById('searchBtn');
@@ -8,9 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Load products lists
     function loadProducts(searchTerm = '') {
+        container.replaceChildren();
         const url = new URL('/products', window.location.origin);
         if (searchTerm) {
-                url.searchParams.append('search', searchTerm);
+            url.searchParams.append('search', searchTerm);
         }
 
         fetch(url, {
@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
         })
             .then(res => res.json())
             .then(paginatedData => {
-                container.innerHTML = '';
 
                 const products = paginatedData.data;
 
                 if (!products || products.length === 0) {
-                    container.innerHTML = '<p>No se encontraron productos.</p>';
+                    const noProduct = document.createElement('p');
+                    noProduct.textContent = 'No se encontraron productos';
+                    container.appendChild(noProduct);
                     return;
                 }
 
@@ -35,18 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
                         ? `/storage/${product.images[0].path}/medium.webp`
                         : '/images/default-product.webp';
 
-                    const cardHTML = `
-                    <div class="product-card" id="cardProduct${product.id}">
-                        <img src="${imagePath}" alt="${product.name}">
-                        <p class="product-title">${shortText}</p>
-                        <p class="product-price">$${parseFloat(product.price).toFixed(2)}</p>
-                    </div>
-                `;
-                    container.insertAdjacentHTML('beforeend', cardHTML);
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+                    productCard.id = `cardProduct${product.id}`;
+
+                    const image = document.createElement('img');
+                    image.src = `${imagePath}`;
+                    image.alt = `${product.name}`
+
+                    const productTitle = document.createElement('p');
+                    productTitle.classList.add('product-title');
+                    productTitle.textContent = `${shortText}`;
+
+                    const productPrice = document.createElement('p');
+                    productPrice.classList.add('product-price');
+                    productPrice.textContent = `$${parseFloat(product.price).toFixed(2)}`;
+
+                    productCard.appendChild(image);
+                    productCard.appendChild(productTitle);
+                    productCard.appendChild(productPrice);
+                    container.appendChild(productCard);
 
                     //Redirection event
-                    const cardProduct = document.getElementById(`cardProduct${product.id}`);
-                    cardProduct.addEventListener('click', () => {
+                    productCard.addEventListener('click', () => {
                         window.location.href = `/product/${product.id}`;
                     });
                 });
@@ -72,9 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         searchBar.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const cleanValue = searchBar.value.trim();
-            if (!(cleanValue === "")) {
-                loadProducts(searchBar.value);
-            }
+                if (!(cleanValue === "")) {
+                    loadProducts(searchBar.value);
+                }
             }
         });
     }
