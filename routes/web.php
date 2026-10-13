@@ -9,7 +9,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.perform');
 Route::get('/products', [ProductController::class, 'getProducts']);
 Route::get('/products/{id}', [ProductController::class, 'getProductById']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','admin'])->group(function () {
     Route::get('/admin', function () {
         return view('administration');
     })->name('admin.dashboard');
@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('catalog');
 });
 
