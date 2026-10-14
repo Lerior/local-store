@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = url.pathname.split('/').pop();
 
     const title = document.getElementById('title');
-    const imagesContainer = document.getElementById('imagesContainer');
+    const container = document.getElementById('container');
     const largeImage = document.getElementById('largeImage');
     const largeImageBlur = document.getElementById('largeImageBlur');
     const imagesThumbnails = document.getElementById('imagesThumbnails');
@@ -21,24 +21,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!response.ok) {
                 throw new Error('Error couldnt found product');
+
             }
 
             const product = await response.json();
 
             renderResult(product);
-            
+
         } catch (error) {
-            
             console.error('Error:', error);
+            renderError('No se pudo cargar el producto.');
         }
 
     }
 
+    function renderError(message) {
+        container.replaceChildren();
+        const errorDisplay = document.createElement('p');
+        errorDisplay.classList.add('price');
+        errorDisplay.textContent = message;
+
+        container.appendChild(errorDisplay);
+    }
+
     //reder product detailed
-    function renderResult(product){
+    function renderResult(product) {
 
         title.textContent = product.name;
-        price.textContent = '$'+product.price;
+        price.textContent = '$' + product.price;
         stock.textContent = product.stock;
         description.textContent = product.description;
         largeImage.src = `/storage/${product.images[0].path}large.webp`
@@ -47,13 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const images = document.createElement('img');
             const card = document.createElement('div');
             card.classList.add('card');
-            card.id = `cardImage${index+1}`;
-            images.id = `imagesT${index+1}`;
+            card.id = `cardImage${index + 1}`;
+            images.id = `imagesT${index + 1}`;
             images.src = `/storage/${product.images[index].path}thumbnail.webp`;
 
             imagesThumbnails.appendChild(card);
-            document.getElementById(`cardImage${index+1}`).appendChild(images);
-       
+            document.getElementById(`cardImage${index + 1}`).appendChild(images);
+
             // change large image
             const cardImageId = document.getElementById(card.id);
             cardImageId.addEventListener('click', () => {
@@ -67,5 +77,5 @@ document.addEventListener('DOMContentLoaded', () => {
     //load products details
     fetchProduct(id);
 
-    
+
 });

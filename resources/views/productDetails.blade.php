@@ -13,7 +13,7 @@
     </nav>
 </header>
 <main>
-    <div class="container">
+    <div class="container" id="container">
         <div class="imagesContainer">
             <div class="cardLargeImage">
                 <img class="large-image-blur" src="" alt="" id="largeImageBlur" aria-hidden="true">
