@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
@@ -43,7 +44,11 @@ class ProductImageService
 
             $path = "products/{$productId}/{$sortOrder}/{$format['name']}";
 
-            Storage::disk('public')->put($path, $encoded);
+            $stored = Storage::disk('public')->put($path, $encoded);
+
+            if (!$stored) {
+                throw new Exception("Couldn't store the image");
+            }
 
         }
 
