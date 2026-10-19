@@ -18,7 +18,7 @@ class IsAdmin
     {
         $user = Auth::user();
 
-        if (!$user || !$user->role === 'admin') {
+        if (!$user || $user->role !== 'admin') {
             abort(403, 'Forbidden');
         }
 
