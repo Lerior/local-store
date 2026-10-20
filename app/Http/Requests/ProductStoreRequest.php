@@ -28,11 +28,17 @@ class ProductStoreRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'stock' => ['required', 'integer', 'min:0'],
             'images' => ['required', 'array', 'min:1', 'max:3'],
+            'images.1' => [
+                'required',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:5120',
+            ],
             'images.*' => [
                 'image',
                 'mimes:png,jpg,jpeg,webp',
                 'max:5120',
-            ]
+            ],
         ];
     }
 
@@ -42,7 +48,7 @@ class ProductStoreRequest extends FormRequest
             $images = $this->file('images', []);
 
             foreach (array_keys($images) as $sortOrder) {
-                if (!in_array((int) $sortOrder, [1, 2, 3], true)) {
+                if (! in_array((int) $sortOrder, [1, 2, 3], true)) {
                     $validator->errors()->add(
                         'images',
                         'Las posiciones de imagen permitidas son 1, 2 y 3.'
