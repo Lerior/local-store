@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cleanUpImg();
                 for (let index = 0; index < item.images.length; index++) {
                     const img = document.createElement('img');
-                    img.id = `imageE${index + 1}`;
+                    img.id = `imageE${item.images[index].sort_order}`;
                     img.src = `/storage/${item.images[index].path}medium.webp`;
-                    document.getElementById(`container-image${index + 1}`).appendChild(img);
+                    document.getElementById(`container-image${item.images[index].sort_order}`).appendChild(img);
                 }
             });
 
