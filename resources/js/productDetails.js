@@ -50,7 +50,11 @@ document.addEventListener('DOMContentLoaded', () => {
         title.textContent = product.name;
         price.textContent = '$' + product.price;
         stock.textContent = product.stock;
-        description.textContent = product.description;
+        if (product.description === null) {
+            description.textContent = "No hay descipcion del artículo"
+        } else {
+            description.textContent = product.description;
+        }
         largeImage.src = `/storage/${product.images[0].path}large.webp`
         largeImageBlur.src = `/storage/${product.images[0].path}large.webp`
         for (let index = 0; index < product.images.length; index++) {
